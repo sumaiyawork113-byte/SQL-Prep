@@ -1,0 +1,8 @@
+For each menu item, show the price difference between that item and the next more expensive item in the same category using LEAD.
+
+Table: restaurant_menu
+Columns: item_id, item_name, category, price_usd, calories, is_available
+
+select item_name, category, price_usd, 
+lead (price_usd) over(partition by category order by price_usd)- price_usd as gap_to_next_price
+from restaurant_menu;
